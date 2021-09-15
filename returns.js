@@ -59,5 +59,4 @@ function plus(a,b) {
 
   console.log(answer)
 
-  document.getElementsByTagName('h1').innerHTML
  
