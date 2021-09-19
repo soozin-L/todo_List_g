@@ -4,37 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>할일목록</title>
+    <title>Momentum app</title>
     <link rel="stylesheet" href="style.css">
    
 </head>
 <body>
-    
-    <div class="wrap">
-        <header>
-            <div id="appjs" class="title">오늘의 할일은요?</div> 
-            <div class="hello">
-                <h1>안녕1</h1>
-            </div>
-           
-        </header>
-        <div class="section">
-           <div class="s1">
-                <input type="text"> 
-                    <div class="btnBox">
-                        <div class="btn">추가</div>
-                        <div class="btn">삭제</div>
-                    </div>
-                   
-            </div>
-        </div>
-        
-        <footer><div class="btn">모두 삭제</div></footer>
-    </div>
+    <form id="loginForm" class="hidden">
+       <input type="text" value="">
+      <input type="submit" value="로그인">
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
     
     
 </body>
-<script src="script.js"></script>
-<script src="returns.js"></script>
+
 <script src="app.js"></script>
 </html>

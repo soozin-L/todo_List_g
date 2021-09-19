@@ -1,45 +1,36 @@
-const titleID = document.getElementById('appjs');
-const titleCN = document.getElementsByClassName('title');
-const mainCN = document.querySelector('.hello');
-const subTag = document.querySelector('.hello h1');
+const loginForm = document.querySelector('#loginForm');
+const loginFormInput = document.querySelector('#loginForm input');
+const greetingUserName = document.querySelector('#greeting')
 
-console.log("titleID = "+titleID.id)
-console.log("titleCN = "+titleCN.className)
-console.log("mainCN = "+mainCN.className);
+const Hidden_ClassName = "hidden";
+const USERNAME_KEY = "username"
 
-
-titleID.innerHTML = "아니 진짜"
-console.dir(subTag)
-
-
-/* 
-function handleMouseEnter(){
-    alert("ddd")
-    subTag.style.color="green";
+function onLoginSubmit(event){
+    event.preventDefault();    
+    const username = loginFormInput.value;
+    loginForm.classList.add(Hidden_ClassName);
+    localStorage.setItem(USERNAME_KEY, username);
+    showGreetion(username);
 }
 
-function handleMouseLeave(){
-    console.log("sdfjdksf")
-    subTag.style.color="blue";
-}
-
-function handleTitleClick(){
-    console.log("title was clicked!");
-    subTag.style.color="red";
-}
-*/
-const fncEvent = {
-    handleTitleClick:function(){
-        alert("클릭했오");
-    },
-    handleMouseLeave:function(){
-        alert("해당영역을 벗어났오");
-    }
+function showGreetion(username){
+    greetingUserName.classList.remove(Hidden_ClassName);
+    greetingUserName.innerText=`hello ${username} 👋`;
 }
 
 
-subTag.addEventListener("click", fncEvent.handleTitleClick);
-/*
-subTag.addEventListener("mouseenter", handleMouseEnter);
-subTag.addEventListener("mouseleave", handleMouseLeave);
-*/
+const LS_USERNAME = localStorage.getItem(USERNAME_KEY);
+
+if(LS_USERNAME === null){
+    loginForm.classList.remove(Hidden_ClassName);
+    loginForm.addEventListener("submit", onLoginSubmit);
+
+}else{
+    showGreetion(LS_USERNAME);
+}
+
+
+
+
+
+
