@@ -7,19 +7,23 @@ const TODOAR_KEY = "todoAr";
 
 function saveTodo(){
     localStorage.setItem(TODOAR_KEY, JSON.stringify(todoAr));
-    console.log(`localStorage.setItem = ${localStorage.setItem(TODOAR_KEY, JSON.stringify(todoAr))}`)
 }
 
 function deleteTodo(event){    
     const li = event.target.parentElement;
     li.remove();
+    console.log(typeof li.id);
+    todoAr = todoAr.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveTodo();
 }
 
 function paintTodo(newTodo){
     const li = document.createElement("li");
     const span = document.createElement("span");
     const btn = document.createElement("button");
-    span.innerText=newTodo;
+    li.id=newTodo.id
+    span.innerText=newTodo.text;
+
     btn.innerText = "❌"
     btn.addEventListener("click", deleteTodo);
     li.appendChild(span);
@@ -30,10 +34,13 @@ function paintTodo(newTodo){
 function handleTodoSubmit(event){
     event.preventDefault(); 
     const newTodo = todoFormInput.value;
-    console.log(newTodo)
     todoFormInput.value ="";
-    todoAr.push(newTodo);
-    paintTodo(newTodo);
+    const newTodoObj = {
+        text : newTodo,
+        id : Date.now(),
+    };
+    todoAr.push(newTodoObj);
+    paintTodo(newTodoObj);
     saveTodo();
 };
 
