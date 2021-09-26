@@ -6,7 +6,8 @@ let todoAr = [];
 const TODOAR_KEY = "todoAr";
 
 function saveTodo(){
-    localStorage.setItem("TODOAR_KEY", JSON.stringify(todoAr));
+    localStorage.setItem(TODOAR_KEY, JSON.stringify(todoAr));
+    console.log(`localStorage.setItem = ${localStorage.setItem(TODOAR_KEY, JSON.stringify(todoAr))}`)
 }
 
 function deleteTodo(event){    
@@ -38,12 +39,10 @@ function handleTodoSubmit(event){
 
 todoForm.addEventListener("submit", handleTodoSubmit);
 const savedTodoAr = localStorage.getItem(TODOAR_KEY);
-console.log(`savedTodoAr = ${savedTodoAr}`)
+console.log(`localStorage.getItem = ${savedTodoAr}`)
 
     
 if(savedTodoAr !== null){
-    console.log("if문 실행")
-    
     const parsedTodoAr = JSON.parse(savedTodoAr);
     todoAr = parsedTodoAr;
     parsedTodoAr.forEach(paintTodo);
